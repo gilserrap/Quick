@@ -59,6 +59,7 @@ final public class Example: NSObject {
     public func run() {
         let world = World.sharedWorld
 
+        world.currentExampleContextDescriptor = .BeforeEach
         if numberOfExamplesRun == 0 {
             world.suiteHooks.executeBefores()
         }
@@ -71,8 +72,10 @@ final public class Example: NSObject {
             before(exampleMetadata: exampleMetadata)
         }
 
+        world.currentExampleContextDescriptor = .It
         closure()
 
+        world.currentExampleContextDescriptor = .AfterEach
         for after in group!.afters {
             after(exampleMetadata: exampleMetadata)
         }

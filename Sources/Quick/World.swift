@@ -38,6 +38,11 @@ final internal class World: NSObject {
     */
 
     internal var currentExampleMetadata: ExampleMetadata?
+    
+    /**
+        The descriptor of the current context.
+    */
+    internal var currentExampleContextDescriptor: ExampleContextDescriptor?
 
     /**
         A flag that indicates whether additional test suites are being run
@@ -56,7 +61,7 @@ final internal class World: NSObject {
 
     // MARK: Singleton Constructor
 
-    private override init() {}
+    private override init() { currentExampleContextDescriptor = .Top }
     static let sharedWorld = World()
 
     // MARK: Public Interface
