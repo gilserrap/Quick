@@ -130,6 +130,7 @@ final internal class World: _WorldBase {
         } else {
             let group = ExampleGroup(
                 description: "root example group",
+                order: Order.defined,
                 flags: [:],
                 isInternalRootExampleGroup: true
             )
