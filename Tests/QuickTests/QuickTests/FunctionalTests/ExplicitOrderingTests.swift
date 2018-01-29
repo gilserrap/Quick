@@ -1,9 +1,9 @@
 import Quick
 import Nimble
 
-class ExplicitOrderingTests: QuickSpec {
+class ExplicitTestOrderingTests: QuickSpec {
     override func spec() {
-        describe("Running a set of tests exactly in the order that they're written", order: Order.defined) {
+        describe("Running a set of tests exactly in the order that they're written", order: TestOrder.defined) {
             var testRunCount = 0
 
             it("b should run this one first") {
@@ -26,7 +26,7 @@ class ExplicitOrderingTests: QuickSpec {
                 expect(testRunCount).to(equal(4))
             }
 
-            describe("h even handles describes", order: Order.defined) {
+            describe("h even handles describes", order: TestOrder.defined) {
                 it("c should run this one fifth") {
                     testRunCount += 1
                     expect(testRunCount).to(equal(5))
@@ -43,7 +43,7 @@ class ExplicitOrderingTests: QuickSpec {
                 expect(testRunCount).to(equal(7))
             }
 
-            describe("k more describes don't break it", order: Order.defined) {
+            describe("k more describes don't break it", order: TestOrder.defined) {
                 it("c should run this one eighth") {
                     testRunCount += 1
                     expect(testRunCount).to(equal(8))

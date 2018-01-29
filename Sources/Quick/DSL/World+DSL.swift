@@ -18,7 +18,7 @@ extension World {
         registerSharedExample(name, closure: closure)
     }
 
-    internal func describe(_ description: String, order: Order, flags: FilterFlags, closure: () -> Void) {
+    internal func describe(_ description: String, order: TestOrder, flags: FilterFlags, closure: () -> Void) {
         guard currentExampleMetadata == nil else {
             raiseError("'describe' cannot be used inside '\(currentPhase)', 'describe' may only be used inside 'context' or 'describe'. ")
         }
@@ -30,20 +30,20 @@ extension World {
         performWithCurrentExampleGroup(group, closure: closure)
     }
 
-    internal func context(_ description: String, order: Order, flags: FilterFlags, closure: () -> Void) {
+    internal func context(_ description: String, order: TestOrder, flags: FilterFlags, closure: () -> Void) {
         guard currentExampleMetadata == nil else {
             raiseError("'context' cannot be used inside '\(currentPhase)', 'context' may only be used inside 'context' or 'describe'. ")
         }
         self.describe(description, order: order, flags: flags, closure: closure)
     }
 
-    internal func fdescribe(_ description: String, order: Order, flags: FilterFlags, closure: () -> Void) {
+    internal func fdescribe(_ description: String, order: TestOrder, flags: FilterFlags, closure: () -> Void) {
         var focusedFlags = flags
         focusedFlags[Filter.focused] = true
         self.describe(description, order: order, flags: focusedFlags, closure: closure)
     }
 
-    internal func xdescribe(_ description: String, order: Order, flags: FilterFlags, closure: () -> Void) {
+    internal func xdescribe(_ description: String, order: TestOrder, flags: FilterFlags, closure: () -> Void) {
         var pendingFlags = flags
         pendingFlags[Filter.pending] = true
         self.describe(description, order: order, flags: pendingFlags, closure: closure)
@@ -119,7 +119,7 @@ extension World {
         let callsite = Callsite(file: file, line: line)
         let closure = World.sharedWorld.sharedExample(name)
 
-        let group = ExampleGroup(description: name, order: Order.defined, flags: flags)
+        let group = ExampleGroup(description: name, order: TestOrder.defined, flags: flags)
         currentExampleGroup.appendExampleGroup(group)
         performWithCurrentExampleGroup(group) {
             closure(sharedExampleContext)
@@ -143,7 +143,7 @@ extension World {
         }
         let callsite = Callsite(file: file, line: line)
         let closure = behavior.spec
-        let group = ExampleGroup(description: behavior.name, order: Order.defined, flags: flags)
+        let group = ExampleGroup(description: behavior.name, order: TestOrder.defined, flags: flags)
         currentExampleGroup.appendExampleGroup(group)
         performWithCurrentExampleGroup(group) {
             closure(context)

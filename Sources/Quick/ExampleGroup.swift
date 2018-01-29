@@ -13,13 +13,13 @@ final public class ExampleGroup: NSObject {
 
     private let internalDescription: String
     private let flags: FilterFlags
-    private let order: Order
+    private let order: TestOrder
     private let isInternalRootExampleGroup: Bool
     private var childGroups = [ExampleGroup]()
     private var childExamples = [Example]()
     private var groupUnits = [Any]()
 
-    internal init(description: String, order: Order, flags: FilterFlags, isInternalRootExampleGroup: Bool = false) {
+    internal init(description: String, order: TestOrder, flags: FilterFlags, isInternalRootExampleGroup: Bool = false) {
         self.internalDescription = description
         self.order = order
         self.flags = flags
@@ -35,7 +35,7 @@ final public class ExampleGroup: NSObject {
      or to any of its descendant example groups.
 
      The ordering of these examples is determined by the value of `order`
-     passed into the `ExampleGroup`'s constructor. (defaults to Order.defined)
+     passed into the `ExampleGroup`'s constructor. (defaults to TestOrder.defined)
      */
     public var examples: [Example] {
         switch order {

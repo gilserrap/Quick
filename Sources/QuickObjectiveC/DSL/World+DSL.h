@@ -4,10 +4,10 @@
 - (void)beforeSuite:(void (^ __nonnull)(void))closure;
 - (void)afterSuite:(void (^ __nonnull)(void))closure;
 - (void)sharedExamples:(NSString * __nonnull)name closure:(void (^ __nonnull)(NSDictionary * __nonnull (^ __nonnull)(void)))closure;
-- (void)describe:(NSString * __nonnull)description order:(Order)order flags:(NSDictionary * __nonnull)flags closure:(void (^ __nonnull)(void))closure;
+- (void)describe:(NSString * __nonnull)description order:(TestOrder)order flags:(NSDictionary * __nonnull)flags closure:(void (^ __nonnull)(void))closure;
 - (void)context:(NSString * __nonnull)description flags:(NSDictionary * __nonnull)flags closure:(void (^ __nonnull)(void))closure;
-- (void)fdescribe:(NSString * __nonnull)description order:(Order)order flags:(NSDictionary * __nonnull)flags closure:(void (^ __nonnull)(void))closure;
-- (void)xdescribe:(NSString * __nonnull)description order:(Order)order flags:(NSDictionary * __nonnull)flags closure:(void (^ __nonnull)(void))closure;
+- (void)fdescribe:(NSString * __nonnull)description order:(TestOrder)order flags:(NSDictionary * __nonnull)flags closure:(void (^ __nonnull)(void))closure;
+- (void)xdescribe:(NSString * __nonnull)description order:(TestOrder)order flags:(NSDictionary * __nonnull)flags closure:(void (^ __nonnull)(void))closure;
 - (void)beforeEach:(void (^ __nonnull)(void))closure;
 - (void)beforeEachWithMetadata:(void (^ __nonnull)(ExampleMetadata * __nonnull))closure;
 - (void)afterEach:(void (^ __nonnull)(void))closure;
